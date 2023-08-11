@@ -393,6 +393,8 @@ export const surpriseMePrompts = [
     "An ancient city hidden within the intricate network of an underground cave system",
     "A world where animals possess the ability to communicate with humans through images",
     "A society that communicates through the arrangement of sand dunes in the desert",
-    "A realm where thoughts become visible as shimmering, colorful threads"
+    "A realm where thoughts become visible as shimmering, colorful threads",
+    "Robot comforting a sobbing toaster, vacuum offers tissues",
+    "Cats hosting 'Meowlympics' with odd sports"
   ];
   
