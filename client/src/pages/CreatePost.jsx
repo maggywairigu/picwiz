@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { preview } from '../assets';
 import { getRandomPrompt } from '../utils'
@@ -31,6 +31,9 @@ const CreatePost = () => {
               }),
             });
     
+    
+            
+        
             const data = await response.json();
             setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
           } catch (err) {
@@ -114,7 +117,7 @@ const CreatePost = () => {
                     className='text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
 
                 >
-                    {generateImage ? 'Generating...' : 'Generate'}
+                    {generatingImg ? 'Generating...' : 'Generate'}
                 </button>
             </div>
 
