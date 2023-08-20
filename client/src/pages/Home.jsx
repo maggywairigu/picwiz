@@ -6,7 +6,7 @@ const RenderCards = ({data, title}) => {
         return data.map((post) => <Card key={post._id} {...post}/>)
     }
     return (
-        <h2 className='mt-5 font-bold text-[#6469ff] text-xl uppercase'>
+        <h2 className='mt-5 font-bold text-[#6469ff] text-xl uppercase text-white'>
             {title}
         </h2>
     )
@@ -17,11 +17,36 @@ const Home = () => {
     const [allPosts, setAllPosts] = useState(null);
     const [searchText, setSearchText] = useState('');
 
+    useEffect(() => {
+        const fetchPosts = async () => {
+            setLoading(true)
+            try {
+                const response = await fetch('http://localhost:8080/api/v1/post', {
+                    method: 'GET',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                })
+
+                if (response.ok) {
+                    const result = await response.json();
+                    setAllPosts(result.data.reverse())
+                }
+            } catch (error) {
+                alert(error)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchPosts();
+    }, []);
+    //http://localhost:8080/api/v1/post
   return (
     <section className='max-w-7xl mx-auto'>
         <div>
             <h1 className='font-extrabold text-[#222328] text-[32px]'>The Community Showcase</h1>
-            <p className='mt-2 text-[#666e75] text-[16px] max-w[500px]'>Browse through a collection of imaginative and visually stunning images generate by PICWIZ AI</p>
+            <p className='mt-2 text-[#666e75] text-[16px] max-w[500px] text-white'>Browse through a collection of imaginative and visually stunning images generate by PICWIZ AI</p>
         </div>
 
         <div className='mt-16'>
@@ -48,7 +73,7 @@ const Home = () => {
                             />
                         ): (
                             <RenderCards 
-                                data={[]}
+                                data={allPosts}
                                 title="No post found"
                             />
                         )}
